@@ -15,10 +15,43 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from ejemplo.views import index, index_dos, index_tres, monstrar_familiares
+from ejemplo.views import (index, index_dos, index_tres,imc,
+                           monstrar_familiares, BuscarFamiliar,
+                           AltaFamiliar, ActualizarFamiliar,
+                           ActualizarSeguro, ActualizarDatosPersonales,
+                           AltaSeguro, AltaDatosPersonales, monstrar_seguro,
+                           monstrar_datosPersonales, BuscarDatosPersonales,BuscarSeguro,
+                           FamiliarList, FamiliarCrear, FamiliarBorrar, FamiliarActualizar)
+from blogfinal.views import (index, PostList, Postcrear, DeleteView)
+#from blog.views import index as blog_index
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('saludar/', index),
-    path('mi-familia/', monstrar_familiares),  # nueva vista
+    path('saludar/<nombre>/<apellido>/', index_dos),
+    path('mostrar-notas/', index_tres),
+    path('imc/<int:peso>/<int:altura>', imc),
+    path('mi-familia/', monstrar_familiares),
+#   path('blog/', blog_index),
+    path('mi-familia/buscar', BuscarFamiliar.as_view()),  # NUEVA RUTA PARA BUSCAR FAMILIAR
+    path('mi-familia/alta', AltaFamiliar.as_view()),  # NUEVA RUTA PARA BUSCAR FAMILIAR
+    path('mi-familia/actualizar/<int:pk>', ActualizarFamiliar.as_view()),
+    path('seguro/actualizar/<int:pk>', ActualizarSeguro.as_view()),
+    path('datosPersonales/actualizar/<int:pk>', ActualizarDatosPersonales.as_view()),
+    path('mis-datos-personales/alta', AltaDatosPersonales.as_view()),
+    path('mi-seguro/alta', AltaSeguro.as_view()),
+    path('seguro/', monstrar_seguro),
+    path('datosPersonales/', monstrar_datosPersonales),
+    path('seguro/buscar', BuscarSeguro.as_view()),
+    path('datosPersonales/buscar', BuscarDatosPersonales.as_view()),
+    path('panel-familia/', FamiliarList.as_view()),
+    path('panel-familia/crear', FamiliarCrear.as_view()),
+    path('panel-familia/<int:pk>/borrar', FamiliarBorrar.as_view()),
+    path('panel-familia/<int:pk>/actualizar', FamiliarActualizar.as_view()),
+    path('blogfinal/', index),
+    path('blogfinal/listar', PostList.as_view(), name='listar'),
+    path('blogfinal/crear', Postcrear.as_view()),
+    path('blogfinal/borrar', DeleteView.as_view()),
+
 ]

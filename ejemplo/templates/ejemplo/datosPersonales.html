@@ -1,0 +1,15 @@
+{% extends 'ejemplo/base.html' %}
+{% block contenido %}
+{% for datosPersonales in lista_datosPersonales %}
+<ul>
+    <li> Nombre: {{datosPersonales.nombre}}, Dirección: {{datosPersonales.direccion}}, Pasaporte: {{datosPersonales.numero_pasaporte}}, Numero_de_DNI: {{datosPersonales.numero_dni}}, Factor_Sanguineo: {{datosPersonales.factorSanguineo}}
+        <!-- Esto agrega un link al form de actulización-->
+        <a href='actualizar/{{ datosPersonales.id }}'>Actualizar</a>
+    </li>
+</ul>
+{% endfor %}
+{%endblock %}
+
+{% block titulo%}
+Lista de todos mis Datos Personales
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'ejemplo/base.html' %}
+{% block contenido %}
+{% for seguro in lista_seguro %}
+<ul>
+    <li> Nombre_De_Plan: {{seguro.nombre}}, tipo_De_Plan: {{seguro.tipoDePlan}}, numero_Socio: {{seguro.numeroSocio}}
+        <!-- Esto agrega un link al form de actulización-->
+        <a href='actualizar/{{ seguro.id }}'>Actualizar</a>
+    </li>
+</ul>
+{% endfor %}
+{%endblock %}
+
+{% block titulo%}
+Lista de todos mi Seguro
+{% endblock %}

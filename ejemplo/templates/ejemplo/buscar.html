@@ -1,0 +1,44 @@
+{% extends 'ejemplo/base.html' %}
+{% block titulo%} Buscar {% endblock %}
+{% block contenido %}
+  
+  <form action="/mi-familia/buscar" method="post">
+      <span>Buscar por familiares </span>
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit">
+  </form>
+
+
+
+ <form action="/seguro/buscar" method="post">
+     <span>Buscar por seguro </span>
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit">
+  </form>
+
+
+
+ <form action="/datosPersonales/buscar" method="post">
+     <span>Buscar por datos personales</span>
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit">
+  </form>
+  {% for familiar in lista_familiares %}
+      <ul>
+          <li> Nombre: {{familiar.nombre}}, Dirección: {{familiar.direccion}}, Pasaporte: {{familiar.numero_pasaporte}}</li>
+      </ul>
+  {% endfor %}
+ {% for seguro in lista_seguro %}
+      <ul>
+          <li> Nombre: {{seguro.nombre}}, tipoDePlan: {{seguro.tipoDePlan}}, numeroSocio: {{seguro.numeroSocio}}</li>
+      </ul>
+  {% endfor %}
+  {% for datosPersonales in lista_datosPersonales %}
+      <ul>
+          <li> Nombre: {{datosPersonales.nombre}}, Dirección: {{datosPersonales.direccion}}, Pasaporte: {{datosPersonales.numero_pasaporte}}, numero_dni: {{datosPersonales.numero_dni}}, factorSanguineo: {{datosPersonales.factorSanguineo}}</li>
+      </ul>
+  {% endfor %}
+{% endblock %}
