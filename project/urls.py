@@ -22,9 +22,10 @@ from ejemplo.views import (index, index_dos, index_tres,imc,
                            AltaSeguro, AltaDatosPersonales, monstrar_seguro,
                            monstrar_datosPersonales, BuscarDatosPersonales,BuscarSeguro,
                            FamiliarList, FamiliarCrear, FamiliarBorrar, FamiliarActualizar)
-from blogfinal.views import (index, PostList, Postcrear, DeleteView)
+from blogfinal.views import (index, PostList, Postcrear, DeleteView, PostDetalle, PostActualizar,
+                             PostBorrar, UserSingUp, UserLogin, UserLogOut)
 #from blog.views import index as blog_index
-
+from django.contrib.admin.views.decorators import staff_member_required
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -49,9 +50,14 @@ urlpatterns = [
     path('panel-familia/crear', FamiliarCrear.as_view()),
     path('panel-familia/<int:pk>/borrar', FamiliarBorrar.as_view()),
     path('panel-familia/<int:pk>/actualizar', FamiliarActualizar.as_view()),
-    path('blogfinal/', index),
-    path('blogfinal/listar', PostList.as_view(), name='listar'),
-    path('blogfinal/crear', Postcrear.as_view()),
-    path('blogfinal/borrar', DeleteView.as_view()),
+    path('blogfinal/', index, name='index'),
+    path('blogfinal/listar/', PostList.as_view(), name='listar'),
+    path('blogfinal/crear/', Postcrear.as_view(), name='crear'),
+    path('blogfinal/<int:pk>/borrar/', PostBorrar.as_view(), name='borrar'),
+    path('blogfinal/<int:pk>/detalle/', PostDetalle.as_view(), name='detalle'),
+    path('blogfinal/<int:pk>/actualizar/', PostActualizar.as_view(), name='actualizar'),
+    path('blogfinal/signup/', UserSingUp.as_view(), name='signup'),
+    path('blogfinal/login/', UserLogin.as_view(), name='login'),
+    path('blogfinal/logout/', UserLogOut.as_view(), name='logout'),
 
 ]
